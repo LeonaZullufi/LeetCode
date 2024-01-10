@@ -137,7 +137,7 @@ public:
             for(int j=i+1; j<n; j++){
                 string t=words[j];
                 reverse(t.begin(), t.end());
-                if(t==s && s[0]!=s[1]) cnt++;
+                if(t==s) cnt++;
 
             }
         }
@@ -192,7 +192,7 @@ public:
 
     }
 };
-//Split a String in Balanced Strings
+//Check If Two String Arrays are Equivalent
 class String4 {
 public:
     bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
@@ -580,10 +580,10 @@ void String(int n ){
             cout<<"You have chosen: Shuffle String\n";
             cout << "Enter a string: ";
             cin >> s;
-            cout << "Enter indices (type '0' to finish input):\n";
+            cout << "Enter indices (type '-1' to finish input):\n";
             while (true) {
                 cin >> inputIndex;
-                if (inputIndex == 0) {
+                if (inputIndex == -1) {
                     break;
                 }
                 indices.push_back(inputIndex);
@@ -598,118 +598,119 @@ void String(int n ){
     void Matrix(int n){
         switch(n){
             case 1:{
-                Matrix1 matrixObject1;
-                vector<vector<int>> grid;
-                int inputElement;
-
-                cout << "Enter matrix elements (type '0' to finish input):\n";
-                while (true) {
-                    vector<int> row;   cout<<"You have chosen: Largest Local Values in a Matrix\n";
-                    while (cin >> inputElement && inputElement != 0) {
-                        row.push_back(inputElement);
+                int n;
+                cout<<"You have chosen:  Largest Values in a Matrix";
+                cout << "Enter the size of the matrix (n): ";
+                cin >> n;
+                vector<vector<int>> inputGrid(n, vector<int>(n));
+                cout << "Enter the elements of the matrix:" <<endl;
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < n; j++) {
+                       cout << "Enter element at position (" << i << ", " << j << "): ";
+                       cin >> inputGrid[i][j];
                     }
-                    if (row.empty()) {
-                        break;
-                    }
-                    grid.push_back(row);
                 }
-                vector<vector<int>> result = matrixObject1.largestLocal(grid);
-                cout << "Resulting largest local matrix:\n";
-                for (const auto& row : result) {
-                    for (int element : row) {
-                      cout << element << " ";
+
+                Matrix1 matrixObject1;
+                vector<vector<int>> result = matrixObject1.largestLocal(inputGrid);
+
+                // Display the result
+                cout << "Resulting matrix:" << endl;
+                for (const auto& row : result)
+                {
+                    for (int value : row)
+                    {
+                       cout << value << " ";
                     }
-                   cout << "\n";
+                   cout << endl;
                 }
 
             }break;
             case 2:{
-                Matrix2 matrixObject2;
-                vector<vector<int>> image;
-                int inputElement;
                 cout<<"You have chosen: Flipping an Image\n";
-                cout << "Enter image matrix elements (type '0' to finish input):\n";
-                while (true) {
-                    vector<int> row;
-                    while (cin >> inputElement && inputElement != 0) {
-                        row.push_back(inputElement);
+                int m, n;
+                cout << "Enter the number of rows (m): ";
+                cin >> m;
+                cout << "Enter the number of columns (n): ";
+                cin >> n;
+                vector<vector<int>> inputImage(m, vector<int>(n));
+                cout << "Enter the elements of the matrix:" << endl;
+                for (int i = 0; i < m; i++) {
+                    for (int j = 0; j < n; j++) {
+                        cout << "Enter element at position (" << i << ", " << j << "): ";
+                        cin >> inputImage[i][j];
                     }
-                    if (row.empty()) {
-                        break;
-                    }
-                    image.push_back(row);
                 }
-                vector<vector<int>> result = matrixObject2.flipAndInvertImage(image);
-                cout << "Resulting flipped and inverted image matrix:\n";
-                for (int i=0;i<result.size();i++) {
-                    for (int j=0; j<result[i].size();j++) {
-                        cout << result[i][j]<< " ";
+                Matrix2 matrix;
+                vector<vector<int>> result = matrix.flipAndInvertImage(inputImage);
+                cout << "Resulting matrix:" << endl;
+                for (const auto& row : result) {
+                    for (int value : row) {
+                        cout << value << " ";
                     }
-                    cout << "\n";
+                    cout << endl;
                 }
             }break;
             case 3:{
-                Matrix3 matrixObject3;
-                vector<vector<int>> g;
-                int inputElement;
-                cout<<"You have chosen: Delete Greatest Value in Each Row\n";
-                cout << "Enter matrix elements (type '0' to finish input):\n";
-                while (true) {
-                    vector<int> row;
-                    while (cin >> inputElement && inputElement != 0) {
-                        row.push_back(inputElement);
+               cout<<"You have chosen: Delete Greatest Value in Each Row\n";
+               int rows, cols;
+               cout << "Enter the number of rows: ";
+               cin >> rows;
+               cout << "Enter the number of columns: ";
+               cin >> cols;
+               vector<vector<int>> inputMatrix(rows, vector<int>(cols));
+               cout << "Enter the elements of the matrix:" << endl;
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < cols; j++) {
+                        cout << "Enter element at position (" << i << ", " << j << "): ";
+                        cin >> inputMatrix[i][j];
                     }
-                    if (row.empty()) {
-                        break;
-                    }
-                    g.push_back(row);
                 }
-                int result = matrixObject3.deleteGreatestValue(g);
-                cout << "Resulting sum after deleting greatest values: " << result <<endl;
-
+                Matrix3 matrix;
+                int result = matrix.deleteGreatestValue(inputMatrix);
+                cout << "Sum of greatest values in each column: " << result << endl;
             }break;
             case 4:{
-                Matrix4 matrixObject4;
-                vector<vector<int>> grid;
-                int inputElement;
                 cout<<"You have chosen: Count Negative Numbers in a Sorted Matrix\n";
-                cout << "Enter matrix elements (type '0' to finish input):\n";
-                while (true) {
-                    vector<int> row;
-                    while (cin >> inputElement && inputElement != 0) {
-                        row.push_back(inputElement);
+                int rows, cols;
+                cout << "Enter the number of rows: ";
+                cin >> rows;
+                cout << "Enter the number of columns: ";
+                cin >> cols;
+                vector<vector<int>> inputMatrix(rows, vector<int>(cols));
+                cout << "Enter the elements of the matrix:" << endl;
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < cols; j++) {
+                        cout << "Enter element at position (" << i << ", " << j << "): ";
+                        cin >> inputMatrix[i][j];
                     }
-                    if (row.empty()) {
-                        break;
-                    }
-                    grid.push_back(row);
                 }
-                int result = matrixObject4.countNegatives(grid);
+                Matrix4 matrix;
+                int result = matrix.countNegatives(inputMatrix);
                 cout << "Number of negative elements in the matrix: " << result << endl;
-
             }break;
             case 5:{
-                Matrix5 matrixObject5;
-                vector<vector<int>> mat;
-                int inputElement;
                 cout<<"You have chosen: Row With Maximum Ones\n";
-                cout << "Enter matrix elements (type '0' to finish input):\n";
-                while (true) {
-                   vector<int> row;
-                    while (cin >> inputElement && inputElement != 0) {
-                        row.push_back(inputElement);
+                int rows, cols;
+                cout << "Enter the number of rows: ";
+                cin >> rows;
+                cout << "Enter the number of columns: ";
+                cin >> cols;
+                vector<vector<int>> inputMatrix(rows, vector<int>(cols));
+                cout << "Enter the elements of the matrix (0 or 1):" << endl;
+                for (int i = 0; i < rows; i++) {
+                    for (int j = 0; j < cols; j++) {
+                        cout << "Enter element at position (" << i << ", " << j << "): ";
+                        cin >> inputMatrix[i][j];
                     }
-                    if (row.empty()) {
-                        break;
-                    }
-                    mat.push_back(row);
                 }
-                vector<int> result = matrixObject5.rowAndMaximumOnes(mat);
+                Matrix5 matrix;
+                vector<int> result = matrix.rowAndMaximumOnes(inputMatrix);
                 if (result[0] != -1) {
-                    cout << "Row with the maximum number of ones: " << result[0] << "\n";
-                    cout << "Number of ones in that row: " << result[1] <<endl;
+                    cout << "Row with the maximum number of ones: " << result[0] << endl;
+                    cout << "Number of ones in that row: " << result[1] << endl;
                 } else {
-                    cout << "Matrix is empty." <<endl;
+                    cout << "No row with ones found." << endl;
                 }
             }break;
             default:
@@ -787,15 +788,19 @@ int main(){
             case 1: cout<<"Enter a number from 1 to 5 to choose a random task from the Array field.If you want to exit the program, press 0.";
                     cin>>problem;
                     Array(problem);
+                    break;
             case 2: cout<<"Enter a number from 1 to 5 to choose a random task from the String field.If you want to exit the program, press 0.";
                 cin>>problem;
                 String(problem);
+                break;
             case 3: cout<<"Enter a number from 1 to 5 to choose a random task from the Matrix field.If you want to exit the program, press 0.";
                 cin>>problem;
-                Array(problem);
+                Matrix(problem);
+                break;
             case 4: cout<<"Enter a number from 1 to 5 to choose a random task from the Math field.If you want to exit the program, press 0.";
                 cin>>problem;
                 Math(problem);
+                break;
             default:
                 cout<<"End of the program";
 
