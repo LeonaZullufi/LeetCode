@@ -14,7 +14,7 @@ public:
             for(int j=i+1; j<n; j++){
                 string t=words[j];
                 reverse(t.begin(), t.end());
-                if(t==s && s[0]!=s[1]) cnt++;
+                if(t==s) cnt++;
 
             }
         }
@@ -70,7 +70,7 @@ public:
 
     }
 };
-//Split a String in Balanced Strings
+//Check If Two String Arrays are Equivalent
 class String4 {
 public:
     bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
@@ -84,7 +84,7 @@ public:
         return wrd1 == wrd2;
     }
 };
-
+//Shuffle String
 class String5 {
 public:
     string restoreString(string s, vector<int>& indices) {
